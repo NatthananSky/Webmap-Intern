@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สะอาดไชยศรี</title>
+    <link rel="icon" href="./img/favicon.ico">
+</head>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Boxicons JS  -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!--Jquery-->
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<!--Leaflet-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<!-- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script> -->
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<!-- Esri Leaflet -->
+<script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+<!-- AJAX -->
+<script src="https://unpkg.com/leaflet-ajax@2.1.0/dist/leaflet.ajax.min.js"></script>
+<!-- style -->
+<link rel="stylesheet" href="css/style_main.css">
+<!-- script -->
+<script src="js/script_main.js"></script>
+<script src="js/script_map.js"></script>
+<!-- <script src="js/test.js"></script> -->
+<!-- import Front -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap">
+<!-- plugin -->
+<!-- Autocomplete-master -->
+<link rel="stylesheet" href="src/Leaflet.Autocomplete-master/docs/autocomplete.min.css">
+<script src="src/Leaflet.Autocomplete-master/docs/autocomplete.js"></script>
+<!-- LinearMeasurement-master -->
+<link rel="stylesheet" href="./src/Leaflet.LinearMeasurement-master/src/Leaflet.LinearMeasurement.css">
+<script src="./src/Leaflet.LinearMeasurement-master/src/Leaflet.LinearMeasurement.js"></script>
+<!-- measure-master -->
+<link rel="stylesheet" href="./src/leaflet-measure-master/leaflet-measure.css">
+<script src="./src/leaflet-measure-master/leaflet-measure.js"></script>
+
+
+<body>
+    <div class="container close">
+        <div class="side-bar">
+            <div class="logo-details">
+                <i class='bx bxs-map-alt'></i>
+                <span class="logo_name">สะอาดไชยศรี</span>
+            </div>
+            <ul class="side-links">
+                <li>
+                    <a href="./DASHBOARD.html" target="_self">
+                        <i class='fa fa-bar-chart'></i>
+                        <span class="link_name">แดชบอร์ด</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" href="./DASHBOARD.html" target="_self">แดชบอร์ด</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a class="nav-show" href="#">
+                            <i data-group="Area" class="fa fa-globe" aria-hidden="true"></i>
+                            <span class="link_name">ขอบเขต</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Area" href="#">ขอบเขต</a></li>
+                        <li><a data-color="red" data-var="boundary" data-group="Area" class="check open" href="#">
+                                <i class='bx bx-rectangle' style="color: red;text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ขอบเขต</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="Basic_information" class='bx bx-layer'></i>
+                            <span class="link_name">ข้อมูลพื้นฐาน</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Basic_information" href="#">ข้อมูลพื้นฐาน</a></li>
+                        <li><a data-group="Basic_information" class="close-all" href="#">
+                                <i class='bx bx-x-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-group="Basic_information" class="open-all" href="#">
+                                <i class='bx bx-check-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>เปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="black" data-var="phangmueng" data-group="Basic_information" class="check"
+                                href="#">
+                                <i class='bx bx-layer' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ผังเมือง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#ff9e17" data-var="village" data-group="Basic_information" class="check"
+                                href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>หลังคาเรือน</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="Landuse" class='bx bx-hive'></i>
+                            <span class="link_name">การใช้ที่ดิน</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Landuse" href="#">การใช้ที่ดิน</a></li>
+                        <li><a data-group="Landuse" class="close-all" href="#">
+                                <i class='bx bx-x-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-group="Landuse" class="open-all" href="#">
+                                <i class='bx bx-check-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>เปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#fff14a" data-var="agriculture" data-group="Landuse" class="check"
+                                href="#"><i class='bx bxs-rectangle'></i>
+                                <p>เกษตร</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#0d00ff" data-var="water" data-group="Landuse" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>น้ำ</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#51731c" data-var="forest" data-group="Landuse" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>ป่า</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#ff0004" data-var="urban" data-group="Landuse" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>สิ่งปลูกสร้าง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#bebdb0" data-var="miscellaneous" data-group="Landuse" class="check"
+                                href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>เบ็ดเตล็ด</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="Field" class="fa fa-pagelines" aria-hidden="true"></i>
+                            <span class="link_name">เกษตร</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Field" href="#">เกษตร</a></li>
+                        <li><a data-group="Field" class="close-all" href="#">
+                                <i class='bx bx-x-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-group="Field" class="open-all" href="#">
+                                <i class='bx bx-check-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>เปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#bdbfa5" data-var="F_rice" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>นาร้าง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#fffd54" data-var="A_rice" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>นาข้าว</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#ddc3c0" data-var="F_rai" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>ไร่ร้าง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#ff74f1" data-var="sugarcane" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>อ้อย</p>
+                            </a>
+                        </li>
+                        <li></i><a data-color="#f3aa18" data-var="potato" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>มันสำปะหลัง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#449c0d" data-var="rubber" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>ยางพารา</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#997568" data-var="oilpalm" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>ปาล์มน้ำมัน</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#a4dda7" data-var="eucalyptus" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>ยูคาลิปตัส</p>
+                            </a>
+                        </li>
+                        <li><a data-color="black" data-var="plants" data-group="Field" class="check" href="#">
+                                <i class='bx bxs-rectangle'></i>
+                                <p>อื่นๆ</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="Place" class='bx bx-pin' style="rotate: 45deg"></i>
+                            <span class="link_name">สถานที่</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Place" href="#">สถานที่</a></li>
+                        <li><a data-group="Place" class="close-all" href="#">
+                                <i class='bx bx-x-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-group="Place" class="open-all" href="#">
+                                <i class='bx bx-check-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>เปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#3459db" data-var="government" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>สถานที่ราชการ</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#00941a" data-var="school" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>โรงเรียนในเขตตำบล</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#e74c3c" data-var="hospital" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>โรงพยาบาล</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#ef7700" data-var="shop" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>สถานที่ประกอบการ</p>
+                            </a>
+                        </li>
+                        <li></i><a data-color="#e3ff00" data-var="temple" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>วัด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#00f5ff" data-var="station" data-group="Place" class="check" href="#">
+                                <i class='bx bx-map' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>ปั๊มน้ำมัน</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="GreenArea" class='bx bx-leaf' style='color:#ffffff'></i>
+                            <span class="link_name">พื้นที่สีเขียว</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="GreenArea" href="#">พื้นที่สีเขียว</a></li>
+                        <li><a data-color="#54f86f" data-var="greenArea" data-group="GreenArea" class="check" href="#">
+                                <i class='bx bx-leaf' style='color:#ffffff;text-shadow: 0px 0px 5px #ffffff;'></i>
+                                <p>พื้นที่สีเขียว(พ.ศ.2566)</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="Street" class="fa fa-road" aria-hidden="true"></i>
+                            <span class="link_name">ถนน</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="Street" href="#">ถนน</a></li>
+                        <li><a data-color="black" data-var="street" data-group="Street" class="check" href="#">
+                                <i class='bx bx-rectangle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ถนน</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="icon-link">
+                        <a href="#">
+                            <i data-group="DEM" class='bx bx-landscape' style='color:#ffffff'></i>
+                            <span class="link_name">แบบจำลองความสูง</span>
+                        </a>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" data-group="DEM" href="#">แบบจำลองความสูง</a></li>
+                        <li><a data-group="DEM" class="close-all" href="#">
+                                <i class='bx bx-x-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>ปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-group="DEM" class="open-all" href="#">
+                                <i class='bx bx-check-circle' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>เปิดทั้งหมด</p>
+                            </a>
+                        </li>
+                        <li><a data-color="black" data-var="DEM" data-group="DEM" class="check" href="#">
+                                <i class='bx bx-landscape' style="text-shadow: 0px 0px 5px #ffffff;"></i>
+                                <p>แบบจำลองความสูง</p>
+                            </a>
+                        </li>
+                        <li><a data-color="#e5b636" data-var="contours" data-group="DEM" class="check" href="#">
+                                <i class='bx bx-rectangle'></i>
+                                <p>เส้นชั้นความสูง</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="nav-bar">
+                <div class="nav-item">
+                    <div class="item-left">
+                        <i class='bx bx-menu'></i>
+                        <div class="search-bar">
+                            <div class="auto-search-wrapper loupe">
+                                <input id="search" class="full-width" autocomplete="off" type="text"
+                                    placeholder="ค้นหา...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-right">
+                        <i class='bx bx-spreadsheet'></i>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay" id="modalOverlay">
+            </div>
+            <div class="legend-dem">
+                <div class="legend">
+                    <h3>364</h3>
+                    <h3>312</h3>
+                    <h3>259</h3>
+                    <h3>207</h3>
+                    <h3>154</h3>
+                </div>
+                <p>เมตร</p>
+            </div>
+            <div class="legend-plan">
+                <span class="close" id="closeModalBtn">&times;</span>
+                <div class="plan-head">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>สัญลักษณ์สี</th>
+                                <th>ประเภท</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="plan-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><img src="./img/1110.png"></td>
+                                <td>ที่อยู่อาศัยหนาแน่นน้อย</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/1120.png"></td>
+                                <td>ที่อยู่อาศัยหนาแน่นปานกลาง</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/2000.png"></td>
+                                <td>พาณิชยกรรมและที่อยู่อาศัยหนาแน่นมาก</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/4400.png"></td>
+                                <td>ชุมชน</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/6100.png"></td>
+                                <td>สถาบันการศึกษา</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/6200.png"></td>
+                                <td>สถาบันศาสนา</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/6300.png"></td>
+                                <td>สถาบันราชการ การสาธารณูปโภคและสาธารณูปการ</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/7110.png"></td>
+                                <td>ปฏิรูปที่ดินเพื่อเกษตรกรรม</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/7180.png"></td>
+                                <td>อนุรักษ์ป่าไม้</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/7350.png"></td>
+                                <td>ที่โล่งเพื่อนันทนาการและการรักษาคุณภาพสิ่งแวดล้อม</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/7380.png"></td>
+                                <td>ที่โล่งเพื่อการรักษาคุณภาพสิ่งแวดล้อม</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/8600.png"></td>
+                                <td>ชนบทและเกษตรกรรม</td>
+                            </tr>
+                            <tr>
+                                <td><img src="./img/8700.png"></td>
+                                <td>อนุรักษ์ชนบทและเกษตรกรรม</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div data-base-map="Map" class="base-map">
+                <img src="img/satellite-data-e1572891876593-621x556.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var map = L.map('map', {
+        attributionControl: true
+    }).setView([16.47, 103.76], 13);
+    var tileLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
+        maxZoom: 22
+    }).addTo(map);
+    map.attributionControl.setPrefix('<a href="https://ogs.co.th/"> OGS : One Geo Survey</a>');
+</script>
+
+<script src="src/Leaflet.Autocomplete-master/docs/script.js"></script>
+
+</html>
